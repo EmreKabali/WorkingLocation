@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core.DataAccess.DTOBase;
+using Entity.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entity.DTO.ResponseDTO
 {
-    public class UserResponseDTO
+    public class WorkLogResponse : ResponseBase<WorkLog>
     {
+
     }
 }
