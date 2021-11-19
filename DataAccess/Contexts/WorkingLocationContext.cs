@@ -25,5 +25,9 @@ namespace DataAccess.Contexts
         public DbSet<Office> Office { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<Department> Department { get; set; }
+
+        public DbSet<MenuItems> MenuItems { get; set; }
+        public DbSet<SubMenuItems> SubMenuItems { get; set; }
+
     }
 }
