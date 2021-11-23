@@ -1,5 +1,22 @@
-﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
+﻿
+@*@inject  Business.Manager.Interface.IMenuBiz _menuBiz;
+
+@{ 
+
+
+    var menuItems = _menuBiz.GetList();
+
+}*@
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+
+        @*@foreach (var item in menuItems.EntityList)
+        {
+
+            
+
+        }*@
         <li class="nav-item">
             <a class="nav-link" href="index.html">
                 <i class="mdi mdi-home menu-icon"></i>

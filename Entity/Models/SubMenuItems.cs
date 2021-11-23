@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entity.Models
 {
-    public class SubMenuItems:ModelBase
+    public class SubMenuItems : ModelBase
     {
 
         public string Name { get; set; }
@@ -19,5 +19,7 @@ namespace Entity.Models
         public string Paremeters { get; set; }
 
         public int ParentMenuId { get; set; }
+
+        public virtual MenuItems MenuItem { get; set; }
     }
 }

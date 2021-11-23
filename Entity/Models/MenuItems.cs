@@ -18,5 +18,9 @@ namespace Entity.Models
         public string Path { get; set; }
 
         public string Paremeters { get; set; }
+
+        public virtual List<SubMenuItems> SubMenuItems { get; set; }
+
+
     }
 }
