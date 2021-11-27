@@ -1,4 +1,5 @@
 ﻿using Business.Manager.Interface;
+using DataAccess.Repositories.Interface;
 using Entity.DTO.RequestDTO;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,11 @@ namespace Business.Manager
 {
     public class MenuBiz : IMenuBiz
     {
+        IMenuRepository menuRepository;
+        public MenuBiz(IMenuRepository menuRepository)
+        {
+            this.menuRepository = menuRepository;
+        }
         public MenuResponse Add(MenuRequest request)
         {
             throw new NotImplementedException();
@@ -42,7 +48,11 @@ namespace Business.Manager
 
         public MenuResponse GetList()
         {
-            throw new NotImplementedException();
+            var menuResponse = new MenuResponse();
+
+            menuResponse.EntityList = menuRepository.GetMenuWithSubMenu();
+
+            return menuResponse;
         }
 
         public MenuResponse Update(MenuRequest request)

@@ -18,7 +18,7 @@ namespace Entity.Models
 
         public string Paremeters { get; set; }
 
-        public int ParentMenuId { get; set; }
+
 
         public virtual MenuItems MenuItem { get; set; }
     }

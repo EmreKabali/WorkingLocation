@@ -1,5 +1,7 @@
 using Business.Manager;
 using Business.Manager.Interface;
+using DataAccess.Repositories;
+using DataAccess.Repositories.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +30,10 @@ namespace UI
 
 
 
+            #region DI
             services.AddScoped<IMenuBiz, MenuBiz>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
