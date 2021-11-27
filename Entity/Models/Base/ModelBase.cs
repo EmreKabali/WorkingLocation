@@ -12,7 +12,7 @@ namespace Entity.Models.Base
         public int Id { get; set; }
         public int  Status { get; set; }
         public int AddedBy { get; set; }
-        public int AddedDate { get; set; }
+        public DateTime AddedDate { get; set; }
         public int? ChangedBy { get; set; }
         public int? ChangedDate { get; set; }
 

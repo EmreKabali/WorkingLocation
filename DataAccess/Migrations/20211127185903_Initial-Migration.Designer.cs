@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(WorkingLocationContext))]
-    [Migration("20211119182319_Initial-Migration-v2")]
-    partial class InitialMigrationv2
+    [Migration("20211127185903_Initial-Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,8 +31,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -64,8 +64,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -97,8 +97,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -139,8 +139,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -178,8 +178,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -215,8 +215,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -248,8 +248,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -259,6 +259,9 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MenuItemId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -277,6 +280,8 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MenuItemId");
+
                     b.ToTable("SubMenuItems");
                 });
 
@@ -290,8 +295,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -323,8 +328,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -359,6 +364,12 @@ namespace DataAccess.Migrations
                     b.Property<int>("TitleId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("TokenExprationDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("User");
@@ -374,8 +385,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -422,8 +433,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ChangedBy")
                         .HasColumnType("int");
@@ -462,6 +473,20 @@ namespace DataAccess.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entity.Models.SubMenuItems", b =>
+                {
+                    b.HasOne("Entity.Models.MenuItems", "MenuItem")
+                        .WithMany("SubMenuItems")
+                        .HasForeignKey("MenuItemId");
+
+                    b.Navigation("MenuItem");
+                });
+
+            modelBuilder.Entity("Entity.Models.MenuItems", b =>
+                {
+                    b.Navigation("SubMenuItems");
                 });
 #pragma warning restore 612, 618
         }

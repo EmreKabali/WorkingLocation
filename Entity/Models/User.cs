@@ -25,6 +25,8 @@ namespace Entity.Models
 
         public int DepartmantId { get; set; }
 
+        public string Token { get; set; }
+        public DateTime? TokenExprationDate { get; set; }
 
     }
 }
