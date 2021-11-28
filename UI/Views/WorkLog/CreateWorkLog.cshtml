@@ -9,7 +9,7 @@
 
         <div class="col-md-12">
 
-           
+
 
             <div class="card">
                 <div class="card-header">
@@ -22,32 +22,71 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
 
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+
+
+<div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="exampleModalLabel">Create WorkLog</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-                ...
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Start Date:</label>
+                            <input type="date" readonly class="form-control" id="eventStartDate" aria-describedby="emailHelp">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">End Date:</label>
+                            <input type="date" readonly class="form-control" id="eventEndDate">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Select WorkLog Type:</label>
+                            <select required class="form-control" id="eventWorkLogType">
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </div>
 
-
 <script src="~/js/EventCalendar.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 <script>
     OpenCalendar();
-
+    LoadWorkLogType();
 </script>

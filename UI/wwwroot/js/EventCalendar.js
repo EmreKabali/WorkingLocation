@@ -13,13 +13,15 @@ function OpenCalendar() {
             },
             selectable: true,
             select: function OpenModal(selectInfo) {
-               
+
 
                 var startdate = selectInfo.startStr;
                 var endDate = selectInfo.endStr;
-                $("#exampleModal").modal('show');
-                
-                
+                $('#eventStartDate').val(startdate);
+                $('#eventEndDate').val(endDate);
+                $("#createEventModal").modal('show');
+
+
             },
 
 
@@ -27,7 +29,41 @@ function OpenCalendar() {
         });
         calendar.render();
     });
-  
+
+};
+
+function SaveEvent() {
+
+
+
+};
+
+function LoadWorkLogType() {
+
+    $.ajax({
+        type: "GET",
+        url: "/WorkLog/LoadWorkLogTypes",
+        success: function (data) {
+           
+            if (data != null) {
+
+                $.each(data, function (key, value) {
+
+                    console.log(key);
+                    console.log(value);
+                    $('#eventWorkLogType')
+                        .append($("<option></option>")
+                            .attr("value", value.id)
+                            .text(value.workLogTypeName));
+                });
+            }
+        },
+        error: function (err) {
+
+        }
+    });
+
+
 };
 
 

@@ -33,6 +33,10 @@ namespace UI
             #region DI
             services.AddScoped<IMenuBiz, MenuBiz>();
             services.AddScoped<IMenuRepository, MenuRepository>();
+
+            services.AddScoped<IWorkLogTypeBiz, WorkLogTypeBiz>();
+            services.AddScoped<IWorkLogTypeRepository, WorkLogTypeRepository>();
+
             #endregion
         }
 
