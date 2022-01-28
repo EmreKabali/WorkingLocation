@@ -20,6 +20,8 @@ namespace UI.Controllers
 
         public IActionResult Index()
         {
+            ViewData["NotificationType"] = "Error";
+            ViewData["NotificationContent"] = "This is a test notification";
             return View();
         }
 

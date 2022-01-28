@@ -8,7 +8,7 @@ namespace Core.Configuration
 {
     public static class Parameters
     {
-        public static string ConnectingString = @"Data Source=.;Initial Catalog=WorkingLocation;Integrated Security=True";
+        public static string ConnectingString = @"Data Source=(localdb)\Kabali;Initial Catalog=WorkingLocation;Integrated Security=True";
 
 
     }

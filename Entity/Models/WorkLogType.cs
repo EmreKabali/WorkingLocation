@@ -11,5 +11,7 @@ namespace Entity.Models
     {
         public string WorkLogTypeName { get; set; }
         public string Description { get; set; }
+
+        public virtual List<WorkLog> WorkLogs { get; set; }
     }
 }

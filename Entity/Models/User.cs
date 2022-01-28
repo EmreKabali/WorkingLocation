@@ -12,7 +12,7 @@ namespace Entity.Models
 
         public string RegisterNumber { get; set; }
 
-        public string Tc { get; set; }
+        public string IdentityNumber { get; set; }
         public string Name { get; set; }
 
         public string Surname { get; set; }
@@ -25,8 +25,14 @@ namespace Entity.Models
 
         public int DepartmantId { get; set; }
 
+        public int ManagerId { get; set; }
+
         public string Token { get; set; }
         public DateTime? TokenExprationDate { get; set; }
+
+        public virtual Title Title { get; set; }
+        public virtual Department Department { get; set; }
+      
 
     }
 }

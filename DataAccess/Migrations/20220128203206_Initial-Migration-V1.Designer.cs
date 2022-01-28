@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(WorkingLocationContext))]
-    [Migration("20211127190417_Initial-Migration-v2")]
-    partial class InitialMigrationv2
+    [Migration("20220128203206_Initial-Migration-V1")]
+    partial class InitialMigrationV1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,48 +87,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Location");
                 });
 
-            modelBuilder.Entity("Entity.Models.MenuItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ChangedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ChangedDate")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsParent")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Paremeters")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MenuItems");
-                });
-
             modelBuilder.Entity("Entity.Models.Office", b =>
                 {
                     b.Property<int>("Id")
@@ -164,6 +122,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Office");
                 });
@@ -238,50 +198,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("Entity.Models.SubMenuItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ChangedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ChangedDate")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MenuItemId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Paremeters")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MenuItemId");
-
-                    b.ToTable("SubMenuItems");
-                });
-
             modelBuilder.Entity("Entity.Models.Title", b =>
                 {
                     b.Property<int>("Id")
@@ -340,8 +256,17 @@ namespace DataAccess.Migrations
                     b.Property<int>("DepartmantId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdentityNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("JobStartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -355,9 +280,6 @@ namespace DataAccess.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tc")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("TitleId")
                         .HasColumnType("int");
 
@@ -368,6 +290,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("TitleId");
 
                     b.ToTable("User");
                 });
@@ -400,11 +326,17 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("EndTime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("OfficeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("StartTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -416,6 +348,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WorkLogTypeId");
 
                     b.ToTable("WorkLog");
                 });
@@ -453,6 +389,17 @@ namespace DataAccess.Migrations
                     b.ToTable("WorkLogType");
                 });
 
+            modelBuilder.Entity("Entity.Models.Office", b =>
+                {
+                    b.HasOne("Entity.Models.Location", "Location")
+                        .WithMany("Offices")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
             modelBuilder.Entity("Entity.Models.Right", b =>
                 {
                     b.HasOne("Entity.Models.Role", "Role")
@@ -472,18 +419,60 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entity.Models.SubMenuItems", b =>
+            modelBuilder.Entity("Entity.Models.User", b =>
                 {
-                    b.HasOne("Entity.Models.MenuItems", "MenuItem")
-                        .WithMany("SubMenuItems")
-                        .HasForeignKey("MenuItemId");
+                    b.HasOne("Entity.Models.Department", "Department")
+                        .WithMany("Users")
+                        .HasForeignKey("DepartmentId");
 
-                    b.Navigation("MenuItem");
+                    b.HasOne("Entity.Models.Title", "Title")
+                        .WithMany("Users")
+                        .HasForeignKey("TitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Title");
                 });
 
-            modelBuilder.Entity("Entity.Models.MenuItems", b =>
+            modelBuilder.Entity("Entity.Models.WorkLog", b =>
                 {
-                    b.Navigation("SubMenuItems");
+                    b.HasOne("Entity.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entity.Models.WorkLogType", "WorkLogType")
+                        .WithMany("WorkLogs")
+                        .HasForeignKey("WorkLogTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("WorkLogType");
+                });
+
+            modelBuilder.Entity("Entity.Models.Department", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Entity.Models.Location", b =>
+                {
+                    b.Navigation("Offices");
+                });
+
+            modelBuilder.Entity("Entity.Models.Title", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Entity.Models.WorkLogType", b =>
+                {
+                    b.Navigation("WorkLogs");
                 });
 #pragma warning restore 612, 618
         }

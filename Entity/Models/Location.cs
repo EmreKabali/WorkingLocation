@@ -12,5 +12,7 @@ namespace Entity.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public virtual List<Office> Offices { get; set; }
     }
 }

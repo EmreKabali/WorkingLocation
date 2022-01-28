@@ -14,6 +14,7 @@ namespace Entity.Models
         public int LocationId { get; set; }
         public int MaximumCapacity { get; set; }
 
+        public virtual Location Location { get; set; }
 
     }
 }
