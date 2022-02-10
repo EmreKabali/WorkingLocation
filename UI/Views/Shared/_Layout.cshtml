@@ -14,12 +14,19 @@
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="~/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <link href="~/lib/main.css" rel="stylesheet" />
+    <link href="~/lib/jquery-ui/jquery-ui.css" rel="stylesheet" />
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="~/css/style.css">
-    <link href="~/css/toastr.min.css" rel="stylesheet" />
+
+    <link href="~/lib/toastr-notification/css/toastr.min.css" rel="stylesheet" />
     <!-- endinject -->
     <link rel="shortcut icon" href="~/images/favicon.png" />
+
+
+    <script src="~/lib/jquery/dist/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="~/js/toastr.js"></script>
 </head>
 <body>
     <div class="container-scroller">
@@ -101,9 +108,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="pages/forms/basic_elements.html">
+                            <i class="mdi mdi-view-headline menu-icon"></i>
+                            <span class="menu-title">Form elements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="mdi mdi-circle-outline menu-icon"></i>
-                            <span class="menu-title">UI Elements</span>
+                            <span class="menu-title">Normal Menu</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
@@ -113,34 +126,13 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">
-                            <i class="mdi mdi-view-headline menu-icon"></i>
-                            <span class="menu-title">Form elements</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">
-                            <i class="mdi mdi-chart-pie menu-icon"></i>
-                            <span class="menu-title">Charts</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
-                            <span class="menu-title">Tables</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">
-                            <i class="mdi mdi-emoticon menu-icon"></i>
-                            <span class="menu-title">Icons</span>
-                        </a>
-                    </li>
+
+
+                    <!-- For Admin -->
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                             <i class="mdi mdi-account menu-icon"></i>
-                            <span class="menu-title">User Pages</span>
+                            <span class="menu-title">Admin</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="auth">
@@ -153,12 +145,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="documentation/documentation.html">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Documentation</span>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
 
@@ -210,17 +197,19 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+
+   
+
     <script src="~/vendors/base/vendor.bundle.base.js"></script>
 
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <script src="~/vendors/chart.js/Chart.min.js"></script>
-    <script src="~/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="~/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+
 
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="~/js/off-canvas.js"></script>
+    @*<script src="~/js/off-canvas.js"></script>*@
     <script src="~/js/hoverable-collapse.js"></script>
     <script src="~/js/template.js"></script>
 
@@ -232,7 +221,7 @@
     <script src="~/js/jquery.dataTables.js"></script>
     <script src="~/js/dataTables.bootstrap4.js"></script>
     <script src="~/lib/main.js"></script>
-    <script src="~/js/toastr.min.js"></script>
+
 
 
     <!-- End custom js for this page-->
