@@ -10,7 +10,7 @@ namespace Entity.DTO.ResponseDTO
 {
     public class UserResponse : ResponseBase<User>
     {
-
+        public Error Error { get; set; }
 
     }
 }
