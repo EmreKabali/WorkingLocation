@@ -7,19 +7,19 @@
                 if (ViewData["NotificationType"].ToString() == "Success")
                 {
                    
-                 <text> toastr.success("@ViewData["NotificationContent"]");</text>
+                 <text>  toastr["success"]("@ViewData["NotificationContent"]");</text>
 
                 }else if (ViewData["NotificationType"].ToString() == "Information")
                 {
 
-                <text> toastr.info("@ViewData["NotificationContent"]");</text>
+                <text>  toastr["info"]("@ViewData["NotificationContent"]");</text>
                 }else if (ViewData["NotificationType"].ToString() == "Warning")
                 {
 
-                <text> toastr.warning("@ViewData["NotificationContent"]");</text>
+                <text>  toastr["warning"]("@ViewData["NotificationContent"]");</text>
                 }else if (ViewData["NotificationType"].ToString() == "Error")
                 {
-                   <text> toastr.error("@ViewData["NotificationContent"]");</text>
+                   <text>  toastr["error"]("@ViewData["NotificationContent"]");</text>
                 }
 
 
