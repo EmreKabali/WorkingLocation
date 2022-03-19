@@ -1,7 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@{Html.RenderPartial("_NotificationPartial");}
+@section scripts{
+@await Html.PartialAsync("_NotificationPartial")
+
+}
 
 <div>
     <h1 class="display-4">Welcome</h1>
