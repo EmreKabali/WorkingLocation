@@ -35,6 +35,8 @@ namespace UI
 
             services.AddScoped<IWorkLogTypeBiz, WorkLogTypeBiz>();
             services.AddScoped<IWorkLogTypeRepository, WorkLogTypeRepository>();
+            services.AddScoped<IUserBiz, UserBiz>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             #endregion
         }
@@ -60,7 +62,7 @@ namespace UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Register}/{id?}");
             });
         }
     }

@@ -2,11 +2,10 @@
 using Entity.DTO.AddModels;
 using Entity.DTO.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.WebPages.Html;
 using System.Threading.Tasks;
 
 namespace UI.Controllers
@@ -33,16 +32,16 @@ namespace UI.Controllers
 
         public IActionResult AddUser()
         {
-            var userViewModel = new AddUserViewModel();
+            var userViewModel = new AddUserViewModel ();
 
             userViewModel.managerList = getManagerList();
 
-            return View();
+            return View(userViewModel);
         }
 
 
         [HttpPost]
-        public IActionResult AddUser(AddUserModel user)
+        public IActionResult AddUser(AddUserViewModel user)
         {
 
             try
