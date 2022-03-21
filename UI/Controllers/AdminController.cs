@@ -13,6 +13,7 @@ namespace UI.Controllers
     public class AdminController : Controller
     {
         private readonly IUserBiz _userBiz;
+     
 
         public AdminController(IUserBiz userBiz)
         {
@@ -51,11 +52,43 @@ namespace UI.Controllers
             catch (Exception ex)
             {
 
-                throw;
+                ViewData["NotificationType"] = "Error";
+                ViewData["NotificationContent"] = ex.Message;
             }
             return View();
         }
 
+
+        [HttpGet]
+        public IActionResult Department()
+        {
+            var departmentViewModel = new AddDepartmentViewModel();
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                ViewData["NotificationType"] = "Error";
+                ViewData["NotificationContent"] = ex.Message;
+            }
+            return View(departmentViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Department(AddDepartmentViewModel department)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                ViewData["NotificationType"] = "Warning";
+                ViewData["NotificationContent"] = $" There are {ModelState.ErrorCount} error.";
+                return View(department);
+            }
+
+            return View();
+        }
 
         public List<SelectListItem> getManagerList()
         {
