@@ -65,7 +65,19 @@ namespace Business.Manager
 
         public DepartmentResponse GetList()
         {
-            throw new NotImplementedException();
+            var response = new DepartmentResponse { EntityList = new List<Entity.Models.Department>(), Error = new Entity.DTO.Error() };
+            try
+            {
+
+                response.EntityList = _repository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                response.Error.HasException = true;
+                response.Error.ErrorMessage = ex.Message;
+            }
+
+            return response;
         }
 
         public DepartmentResponse Update(DepartmentRequest request)

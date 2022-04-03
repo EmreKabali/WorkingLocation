@@ -1,6 +1,9 @@
 ﻿using Business.Manager.Interface;
 using Entity.DTO.AddModels;
+using Entity.DTO.Filters;
+using Entity.DTO.RequestDTO;
 using Entity.DTO.ViewModels;
+using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -13,11 +16,13 @@ namespace UI.Controllers
     public class AdminController : Controller
     {
         private readonly IUserBiz _userBiz;
-     
+        private readonly IDepartmentBiz _departmentBiz;
 
-        public AdminController(IUserBiz userBiz)
+
+        public AdminController(IUserBiz userBiz, IDepartmentBiz departmentBiz)
         {
             _userBiz = userBiz;
+            _departmentBiz = departmentBiz;
         }
         public IActionResult Index()
         {
@@ -33,7 +38,7 @@ namespace UI.Controllers
 
         public IActionResult AddUser()
         {
-            var userViewModel = new AddUserViewModel ();
+            var userViewModel = new AddUserViewModel();
 
             userViewModel.managerList = getManagerList();
 
@@ -79,7 +84,7 @@ namespace UI.Controllers
         [HttpPost]
         public IActionResult Department(AddDepartmentViewModel department)
         {
-
+            var request = new DepartmentRequest { Entity = new Entity.Models.Department() };
             if (!ModelState.IsValid)
             {
                 ViewData["NotificationType"] = "Warning";
@@ -87,15 +92,31 @@ namespace UI.Controllers
                 return View(department);
             }
 
-            return View();
+
+            request.Entity.Name = department.Name;
+            request.Entity.Description = department.Description;
+            request.Entity.AddedBy = 1;
+
+            var result = _departmentBiz.Add(request);
+            return RedirectToAction("DepartmentList");
+        }
+
+
+        public IActionResult DepartmentList(DepartmentFilter filter)
+        {
+            var departmentFilter = new DepartmentFilter();
+
+            departmentFilter.Departments = _departmentBiz.GetList().EntityList;
+
+            return View(departmentFilter);
         }
 
         public List<SelectListItem> getManagerList()
         {
-            var users = _userBiz.GetList().EntityList.Select(x=>new SelectListItem(text:x.Name+' '+ x.Surname ,value:x.Id.ToString())).ToList();
+            var users = _userBiz.GetList().EntityList.Select(x => new SelectListItem(text: x.Name + ' ' + x.Surname, value: x.Id.ToString())).ToList();
 
             return users;
-            
+
         }
     }
 }

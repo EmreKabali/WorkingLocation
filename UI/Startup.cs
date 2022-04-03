@@ -37,7 +37,8 @@ namespace UI
             services.AddScoped<IWorkLogTypeRepository, WorkLogTypeRepository>();
             services.AddScoped<IUserBiz, UserBiz>();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<IDepartmentBiz, DepartmentBiz>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             #endregion
         }
 

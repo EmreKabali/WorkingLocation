@@ -1,6 +1,9 @@
-﻿namespace Business.Manager.Interface
+﻿using Core.DataAccess.DTOBase;
+using Entity.Models;
+
+namespace Business.Manager.Interface
 {
-    public class DepartmenRequest
+    public class DepartmenRequest:RequestBase<Department>
     {
     }
 }
